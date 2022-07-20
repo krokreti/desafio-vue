@@ -1,13 +1,13 @@
 <template>
   <div id="app">
     <AppHeaderVue/>
-    <AppPerfilVue/>
     <router-view/>
   </div>
 </template>
 <script>
 import AppHeaderVue from './components/layout/AppHeader.vue'
-import AppPerfilVue from './components/layout/AppPerfil.vue'
+
+
 export default {
   data() {
     return {
@@ -16,7 +16,6 @@ export default {
   },
   components: {
     AppHeaderVue,
-    AppPerfilVue,
   }
 }
 </script>
@@ -25,12 +24,13 @@ export default {
 * {
   padding: 0;
   margin: 0;
+  background-color: #05141c;  
   font-family: 'Open Sans', sans-serif;
-  background-color: #05141c;
   box-sizing: border-box;
 }
 
 .box {
-  background: #1b2730;
+  background-color: #1b2730;
+  
 }
 </style>

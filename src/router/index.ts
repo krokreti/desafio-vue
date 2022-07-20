@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import PostDetalhado from '../components/posts/PostDetalhado.vue';
 
 Vue.use(VueRouter)
 
@@ -14,6 +15,11 @@ const routes: Array<RouteConfig> = [
     path: '/about',
     name: 'about',
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/post/:id',
+    name: 'post-detalhado',
+    component: PostDetalhado
   }
 ]
 

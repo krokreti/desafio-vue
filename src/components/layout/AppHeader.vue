@@ -1,8 +1,11 @@
 !<template>
   <div>
     <nav class="navbar">
-        TALK2MEE
-        <!--i class='fas fa-comments'></i-->
+        
+        <div class="navbar-logo">
+            <!--i class='fas fa-comments'></i-->
+            TALK2MEE
+        </div> 
     </nav>
   </div>
 </template>
@@ -19,16 +22,21 @@ export default {
 </script>
 
 <style scoped>
-.navbar{
-    background-color: #05141c;
-    height: 3em;
+.navbar, .navbar-logo {
     display: flex;
+}
+
+.navbar{
+    line-height: 3em;
     justify-content: center;
+}
+
+.navbar-logo {
     color: white;
+    align-items: center;
     font-family: DeepShadow;
     cursor: pointer;
 }
-
 
 @font-face {
     font-family: DeepShadow;
