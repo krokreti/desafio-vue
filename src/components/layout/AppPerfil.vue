@@ -19,14 +19,16 @@
                 Followers
             </div>
         </div>
-        <div class="perfil-visualizar box">
-        Meu Perfil
+        <div class="perfil-visualizar mt-3 box" >
+            <router-link class="box " :to="{ name: 'profile', params: { id: `${user.id}` }}">Meu Perfil</router-link>
         </div>
   </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: 'AppPerfil',
     data() {
@@ -36,12 +38,15 @@ export default {
         }
     },
     methods: {
+        ...mapActions(['addLoggedUser',]),
+
         async getLoggedUser() {
             const req = await fetch("https://gorest.co.in/public/v2/users");
             const data = await req.json();
             this.user = data[0];
             const vector = this.user.email.split("@")
             this.profileName = vector[0]
+            this.addLoggedUser(this.user)
         }
     },
     created() {
@@ -97,17 +102,23 @@ img {
     padding: 5% 27.2%;
 }
 
-.perfil-visualizar {
+.perfil-visualizar, .perfil-visualizar a {
+    text-decoration: none;
     line-height: 4.8em;
     color: #5193bc;
     font-weight: 700;
     cursor: pointer;
     border-radius: 20px;
     transition: .5s;
-
+    
 }
 
-.perfil-visualizar:hover {
+.perfil-visualizar a {
+    width: 100%;
+    text-align: center;
+}
+
+.perfil-visualizar a:hover {
     background: #324858;
     color: #6bc3f9;
 }
@@ -116,4 +127,6 @@ img {
     text-transform: lowercase;
     
 }
+
+
 </style>

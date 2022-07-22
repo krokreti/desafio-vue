@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import PostDetalhado from '../components/posts/PostDetalhado.vue';
+import Perfil from '../views/Perfil.vue'
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes: Array<RouteConfig> = [
     path: '/post/:id',
     name: 'post-detalhado',
     component: PostDetalhado
+  },
+  {
+    path: '/perfil/:id',
+    name: 'profile',
+    component: Perfil
   }
 ]
 
