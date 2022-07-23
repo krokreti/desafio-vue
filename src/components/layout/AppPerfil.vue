@@ -2,7 +2,8 @@
   <div class="perfil">
     <div class="perfil-box box">
         <div class="perfil-box-image box">
-        <img src="../../assets/profile-picture.png" alt="profile-picture" style="width:40%; height:25%">
+        <img src="../../assets/profile-picture-man.png" alt="profile-picture" style="width:40%; height:25%" v-if="user.gender=='male'">
+        <img src="../../assets/profile-picture-woman.png" alt="profile-picture" style="width:40%; height:25%" v-else>
         </div>
         <h5>{{ user.name }}</h5>
         <h6>

@@ -6,7 +6,8 @@
     <div class="d-flex justify-content-center perfil-container">
     <div class="perfil-box box w-50 " >
         <div class="perfil-box-image box">
-            <img src="../assets/profile-picture.png" alt="profile-picture" style="width:40%; height:25%" class="img-fluid ">
+            <img src="../assets/profile-picture-man.png" alt="profile-picture" style="width:40%; height:25%" class="img-fluid " v-if="user.gender=='male'">
+            <img src="../assets/profile-picture-woman.png" alt="profile-picture" style="width:40%; height:25%" class="img-fluid " v-else>
         </div>
         <h4 class="box mt-2 text-center">{{ user.name }}</h4>
         <div class="container box">
