@@ -1,18 +1,18 @@
 <template>
   <div class="home d-flex">
-    <AppPerfilVue/>
-    <ListaPostagensVue/>
+    <AppPerfil/>
+    <ListaPostagens/>
   </div>
 </template>
 
 <script lang="ts">
-import AppPerfilVue from '@/components/layout/AppPerfil.vue';
-import ListaPostagensVue from '@/components/posts/ListaPostagens.vue';
+import AppPerfil from '@/components/layout/AppPerfil.vue';
+import ListaPostagens from '@/components/posts/ListaPostagens.vue';
 import { Component, Vue } from 'vue-property-decorator';
 @Component({
   components: {
-    AppPerfilVue,
-    ListaPostagensVue,
+    AppPerfil,
+    ListaPostagens,
   },
 })
 export default class HomeView extends Vue {}

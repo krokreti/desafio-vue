@@ -1,18 +1,13 @@
-!<template>
-  
-</template>
+!<template></template>
 
 <script>
 export default {
-    name: 'AppFooter',
-    data() {
-        return {
-            
-        }
-    },
-}
+  name: "AppFooter",
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style>
-
 </style>

@@ -1,11 +1,11 @@
 <template>
-  <div class="perfil w-100  d-block">
-    <div class="voltar border border-1 border-light rounded-circle px-3 py-2 float-start position-absolute" @click="voltar()">
+  <div class="perfil w-100 d-block" >
+    <div class="voltar border border-1 border-light rounded-circle px-3 py-2 float-start position-absolute ms-3" @click="voltar()">
         <i class="fa fa-angle-left" aria-hidden="true"></i>
     </div>
-    <div class="d-flex justify-content-center perfil-container">
-    <div class="perfil-box box w-50 " >
-        <div class="perfil-box-image box">
+    <div class="perfil-container d-flex justify-content-center ">
+    <div class="perfil-box box w-50 p-3" >
+        <div class="perfil-box-image box d-flex justify-content-center">
             <img src="../assets/profile-picture-man.png" alt="profile-picture" style="width:40%; height:25%" class="img-fluid " v-if="user.gender=='male'">
             <img src="../assets/profile-picture-woman.png" alt="profile-picture" style="width:40%; height:25%" class="img-fluid " v-else>
         </div>
@@ -50,12 +50,12 @@
 
     </div>
     <div class="d-flex justify-content-center ">
-    <div class="perfil-box box w-50 mt-2 text-center" v-if="posts.length!=0"> Minhas Publicações: </div>
-    <div class="perfil-box box w-50 mt-2 text-center" v-else> Você ainda não possui publicações! </div>
+    <div class="perfil-box box w-50 mt-2 text-center p-3" v-if="posts.length!=0"> Minhas Publicações: </div>
+    <div class="perfil-box box w-50 mt-2 text-center p-3" v-else> Você ainda não possui publicações! </div>
     </div>
     <div class="d-flex justify-content-center" >
             <div class="publicacoes d-block w-50 flex-wrap">
-            <div class="perfil-box box w-100 mt-2" v-for="post in posts" :key="post.id">
+            <div class="perfil-box box w-100 mt-2 p-3" v-for="post in posts" :key="post.id">
                 <div class="row box">
                     <h5 class="text-center">{{ post.title }}</h5> 
                 </div>
@@ -64,7 +64,7 @@
                 </div>
                 <div class="box row justify-content-center">
                     
-                    <EditarPostagemVue :publicacao="post" @atualizar-publicacoes="fetchUserPosts()" />
+                    <EditarPostagem :publicacao="post" @atualizar-publicacoes="fetchUserPosts()" />
 
                     <button type="button" class="btn btn-primary mx-1" @click="confirmDelete(post.id)">
                         Excluir
@@ -80,7 +80,7 @@
 
 <script>
 import router from '@/router';
-import EditarPostagemVue from '@/components/modal/EditarPostagem.vue';
+import EditarPostagem from '@/components/modal/EditarPostagem.vue';
 
 export default {
     name: 'Perfil',
@@ -106,7 +106,7 @@ export default {
 
     },
     components: {
-        EditarPostagemVue,
+        EditarPostagem,
     },
     
     methods: {
@@ -129,7 +129,6 @@ export default {
                 }
             });
             const data = await req.json()
-            //const teste = JSON.parse(JSON.stringify(data));
             this.posts = data;
         },
         confirmDelete(id) {
@@ -164,7 +163,6 @@ export default {
         },
         async save() {
             const data = {
-            //id: ,
             user_id: this.id,
             title: this.titulo,
             body: this.conteudo,
@@ -178,7 +176,6 @@ export default {
                 },
             body: dataJson,
         });
-            //pegar os dados q foram gravados
         const res = await req.json();
         console.log(req.status);
         console.log(res);
@@ -207,7 +204,7 @@ export default {
 
 .perfil-container {
     height: fit-content;
-    
+
 }
 
 .perfil-box {
