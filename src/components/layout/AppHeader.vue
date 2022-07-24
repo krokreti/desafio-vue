@@ -1,11 +1,11 @@
 !<template>
   <div>
-    <nav class="navbar">
+    <nav class="navbar d-flex justify-content-center" role="button">
         
-        <div class="navbar-logo">
-            <!--i class='fas fa-comments'></i-->
-            TALK2MEE
+        <div class="navbar-logo d-flex align-items-center text-white fw-bold" >
+            <router-link class="navbar-logo text-decoration-none " :to="{ name: 'home'}"> TALK2MEE</router-link>
         </div> 
+
     </nav>
   </div>
 </template>
@@ -22,20 +22,15 @@ export default {
 </script>
 
 <style scoped>
-.navbar, .navbar-logo {
-    display: flex;
-}
 
 .navbar{
     line-height: 3em;
-    justify-content: center;
 }
 
 .navbar-logo {
     color: white;
-    align-items: center;
     font-family: DeepShadow;
-    cursor: pointer;
+
 }
 
 @font-face {

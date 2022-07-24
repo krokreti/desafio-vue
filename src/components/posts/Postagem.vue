@@ -2,32 +2,29 @@
         <div class="lista box w-100" >
         <div class="container box"  >
         <div class="row">
-        <div class="lista-user box mr-2 col-2 ">
+        <div class="lista-user box mr-2 col-2 text-center">
             <img src="../../assets/profile-picture-man.png" alt="profile-picture" style="width:85%;" v-if="user.gender=='male'">
             <img src="../../assets/profile-picture-woman.png" alt="profile-picture" style="width:85%; " v-else>
+            {{ user.name }}
         </div>
         <div class="lista-conteudo box col-10">
         <span>
-            <h4 class="box">{{ post.title }}</h4> {{post.id}}
+            <h4 class="box">{{ post.title }}</h4> {{post.user_id}}
         </span>
         <span>
             {{ post.body }}
         </span>
         </div>
         </div>
-        <div class="row mx-4" >
-            <router-link class="box d-flex justify-content-end " :to="{ name: 'post-detalhado', params: { id: `${post.id}` }}"> {{commentsCount}} Comentário(s) Clique para ver mais...  </router-link>
-        </div>
         <div class="row mt-4">
-            <div class="lista-actions d-flex box ">
+            <div class="lista-actions d-flex box justify-content-center flex-wrap ">
                 <button type="button" class="btn btn-primary mx-1 " @click="favoritar">
                     <i class="fa-solid fa-heart box" style="color: red; background: #28353e;" v-if="favorite"></i>
                     <i class="fa-regular fa-heart box" style="background: #28353e;" v-else></i>
                     Curtir
                 </button>
-                
-                <button type="button" class="btn btn-primary mx-1" @click="showTextArea=!showTextArea">
-                    Comentar
+                <button type="button" class="btn btn-primary mx-1" @click="verPostDetalhado(post.id)">
+                    Ver Publicação
                 </button>
             </div>
         </div>
@@ -41,6 +38,7 @@
 </template>
 
 <script>
+import router from '@/router';
 export default {
     name: 'Postagem',
     props: {
@@ -54,7 +52,6 @@ export default {
         }
     },
     async mounted() {
-        this.fetchComments();
         this.fetchPostUser();
     },
     methods: {
@@ -70,7 +67,6 @@ export default {
                 }
             });
             const data = await req.json();
-            console.log(this.post.id + " aqui -> " + data)
             if(data==null) {
                 this.commentsCount = 0;
             }
@@ -86,6 +82,10 @@ export default {
             });
             const data = await req.json();
             this.user = data;
+            this.fetchComments();
+        },
+        verPostDetalhado(id) {
+            router.push({ name: 'post-detalhado', params: { id: `${id}` } })
         }
     }
 }
@@ -98,11 +98,6 @@ export default {
     color: white;
     border-radius: 20px;
     padding: 1em;
-}
-
-.lista-actions {
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 #comentario {

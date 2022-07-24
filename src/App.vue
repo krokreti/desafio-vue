@@ -33,4 +33,24 @@ export default {
   background-color: #1b2730;
   
 }
+
+h5, h6, p, span {
+    background:none;
+    filter:none;
+    box-shadow:none;
+    border-radius:0px;
+    border:none;
+}
+
+.btn-primary {
+    width: 25%;
+    white-space: normal;
+    --bs-btn-bg: #28353e;
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-color: #5193bc;
+    --bs-btn-hover-bg: (#28353e, 10%);
+    --bs-btn-hover-border-color: #28353e;   
+    --bs-btn-focus-shadow-rgb: #28353e;
+    --bs-btn-active-border-color: #28353e;
+}
 </style>
