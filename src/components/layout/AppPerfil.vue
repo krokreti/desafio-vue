@@ -67,6 +67,7 @@
 
 <script>
 import { mapActions } from "vuex";
+import { getUser } from "../../Api.js";
 
 export default {
   name: "AppPerfil",
@@ -78,19 +79,19 @@ export default {
   },
   methods: {
     ...mapActions(["addLoggedUser"]),
-
-    async getLoggedUser() {
-      const req = await fetch("https://gorest.co.in/public/v2/users");
-      const data = await req.json();
-      this.user = data[0];
-      const vector = this.user.email.split("@");
-      this.profileName = vector[0];
-      this.addLoggedUser(this.user);
-      localStorage.setItem("user", JSON.stringify(this.user));
+    getUser() {
+      getUser().then((response) => {
+        console.log(response[0]);
+        this.user = response[0];
+        const vector = this.user.email.split("@");
+        this.profileName = vector[0];
+        this.addLoggedUser(this.user);
+        localStorage.setItem("user", JSON.stringify(this.user));
+      });
     },
   },
   created() {
-    this.getLoggedUser();
+    this.getUser();
   },
 };
 </script>

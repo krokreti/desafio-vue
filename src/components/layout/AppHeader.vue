@@ -4,8 +4,10 @@
       <div class="navbar-logo d-flex align-items-center text-white fw-bold">
         <router-link
           class="navbar-logo text-decoration-none"
-          :to="{ name: 'home' }">
-          TALK2MEE</router-link>
+          :to="{ name: 'home' }"
+        >
+          TALK2MEE</router-link
+        >
       </div>
     </nav>
   </div>

@@ -37,7 +37,6 @@
             <div class="lista-conteudo box col-10">
               <span>
                 <h4 class="box">{{ post.title }}</h4>
-                {{ post.id }}
               </span>
               <span>
                 {{ post.body }}
@@ -118,6 +117,12 @@
 import Comentario from "./Comentario.vue";
 import { mapActions } from "vuex";
 import router from "@/router";
+import {
+  getPostById,
+  getUserById,
+  getCommentsByPost,
+  createComentario,
+} from "@/Api";
 
 export default {
   name: "PostDetalhado",
@@ -144,57 +149,23 @@ export default {
   },
   methods: {
     ...mapActions(["addLoggedUser"]),
-    async fetchPostById() {
-      const req = await fetch(
-        "https://gorest.co.in/public/v2/posts/" + this.id,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await req.json();
-      this.post = data;
-      this.id_user = this.post.user_id;
-      this.fetchPostUser();
+    fetchPostById() {
+      getPostById(this.id).then((response) => {
+        this.post = response;
+        this.id_user = this.post.user_id;
+        this.fetchPostUser();
+      });
     },
-    async fetchPostUser() {
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/users/${this.id_user}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await req.json();
-
-      this.user = data;
-      this.fetchComments();
+    fetchPostUser() {
+      getUserById(this.id_user).then((response) => {
+        this.user = response;
+        this.fetchComments();
+      });
     },
     async fetchComments() {
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/posts/${this.id}/comments`,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await req.json();
-      this.comments = data;
+      getCommentsByPost(this.id).then((response) => {
+        this.comments = response;
+      });
     },
     async publicarComentario() {
       const data = {
@@ -203,24 +174,11 @@ export default {
         email: this.$store.state.user.email,
         body: this.novoComentario,
       };
-      const dataJson = JSON.stringify(data);
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/posts/${this.id}/comments`,
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-          body: dataJson,
-        }
-      );
-      const res = await req.json();
-      this.fetchComments();
-      this.novoComentario = null;
-      this.showTextArea = !this.showTextArea;
+      createComentario(this.id, data).then((response) => {
+        this.fetchComments();
+        this.novoComentario = null;
+        this.showTextArea = !this.showTextArea;
+      });
     },
     validarComentario() {
       if (this.novoComentario == null || this.novoComentario == "") {

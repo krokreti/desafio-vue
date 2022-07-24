@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { getPosts } from "@/Api";
 import Postagem from "./Postagem.vue";
 export default {
   name: "ListaPostagens",
@@ -19,14 +20,14 @@ export default {
     };
   },
   methods: {
-    async fetchPosts() {
-      const req = await fetch("https://gorest.co.in/public/v2/posts");
-      const data = await req.json();
-      this.posts = data;
+    getPosts() {
+      getPosts().then((response) => {
+        this.posts = response;
+      });
     },
   },
   created() {
-    this.fetchPosts();
+    this.getPosts();
   },
   components: {
     Postagem,

@@ -20,7 +20,6 @@
         <div class="lista-conteudo box col-10">
           <span>
             <h4 class="box">{{ post.title }}</h4>
-            {{ post.user_id }}
           </span>
           <span>
             {{ post.body }}
@@ -66,6 +65,7 @@
 
 <script>
 import router from "@/router";
+import { getUserById } from "@/Api";
 export default {
   name: "Postagem",
   props: {
@@ -85,41 +85,10 @@ export default {
     favoritar() {
       this.favorite = !this.favorite;
     },
-    async fetchComments() {
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/posts/${this.post.id}/comments`,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await req.json();
-      if (data == null) {
-        this.commentsCount = 0;
-      }
-      this.commentsCount = data.length;
-    },
-    async fetchPostUser() {
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/users/${this.post.user_id}`,
-        {
-          method: "GET",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const data = await req.json();
-      this.user = data;
-      this.fetchComments();
+    fetchPostUser() {
+      getUserById(this.post.user_id).then((response) => {
+        this.user = response;
+      });
     },
     verPostDetalhado(id) {
       router.push({ name: "post-detalhado", params: { id: `${id}` } });

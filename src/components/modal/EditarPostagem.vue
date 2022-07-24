@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import { updatePost } from "@/Api";
+
 export default {
   name: "EditarPostagem",
   props: {
@@ -116,25 +118,10 @@ export default {
         title: this.titulo,
         body: this.conteudo,
       };
-      const dataJson = JSON.stringify(data);
-
-      const req = await fetch(
-        `https://gorest.co.in/public/v2/posts/${this.publicacao.id}`,
-        {
-          method: "PATCH",
-          headers: {
-            Authorization:
-              "Bearer " +
-              "791a4bdc85e9e4db3defbdd204c01ee1fbd39c5faf755fda9a3979649e5a6881",
-            "Content-Type": "application/json",
-          },
-          body: dataJson,
-        }
-      );
-      const res = await req.json();
-      this.$emit("atualizar-publicacoes");
-
-      document.getElementById("close").click();
+      updatePost(this.publicacao.id, data).then((response) => {
+        this.$emit("atualizar-publicacoes");
+        document.getElementById("close").click();
+      });
     },
   },
 };
