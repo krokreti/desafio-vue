@@ -1,19 +1,13 @@
 # desafio-vue
 
-## Project setup
+## Primeiro: clone o repositório!
+
+## Segundo: Abra o projeto e vá até a pasta raiz (/desafio-vue)
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Terceiro: Inicie o projeto!
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
