@@ -7,7 +7,7 @@
 npm install
 ```
 
-### Terceiro: Inicie o projeto!
+## Terceiro: Inicie o projeto!
 ```
 npm run serve
 ```
