@@ -1,14 +1,14 @@
 <template>
   <div class="home d-flex">
-    <AppPerfil/>
-    <ListaPostagens/>
+    <AppPerfil />
+    <ListaPostagens />
   </div>
 </template>
 
 <script lang="ts">
-import AppPerfil from '@/components/layout/AppPerfil.vue';
-import ListaPostagens from '@/components/posts/ListaPostagens.vue';
-import { Component, Vue } from 'vue-property-decorator';
+import AppPerfil from "@/components/layout/AppPerfil.vue";
+import ListaPostagens from "@/components/posts/ListaPostagens.vue";
+import { Component, Vue } from "vue-property-decorator";
 @Component({
   components: {
     AppPerfil,
