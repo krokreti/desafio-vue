@@ -122,7 +122,7 @@ import {
   getUserById,
   getCommentsByPost,
   createComentario,
-} from "@/Api";
+} from "@/api";
 
 export default {
   name: "PostDetalhado",

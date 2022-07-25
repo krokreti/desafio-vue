@@ -67,7 +67,7 @@
 
 <script>
 import { mapActions } from "vuex";
-import { getUser } from "../../Api.js";
+import { getUser } from "../../api.js";
 
 export default {
   name: "AppPerfil",

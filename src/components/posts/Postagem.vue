@@ -65,7 +65,7 @@
 
 <script>
 import router from "@/router";
-import { getUserById } from "@/Api";
+import { getUserById } from "@/api";
 export default {
   name: "Postagem",
   props: {

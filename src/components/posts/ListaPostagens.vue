@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { getPosts } from "@/Api";
+import { getPosts } from "@/api";
 import Postagem from "./Postagem.vue";
 export default {
   name: "ListaPostagens",

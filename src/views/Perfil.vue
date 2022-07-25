@@ -149,7 +149,7 @@
 <script>
 import router from "@/router";
 import EditarPostagem from "@/components/modal/EditarPostagem.vue";
-import { getUserById, getUserPosts, deletePost, createPost } from "@/Api";
+import { getUserById, getUserPosts, deletePost, createPost } from "@/api";
 
 export default {
   name: "Perfil",

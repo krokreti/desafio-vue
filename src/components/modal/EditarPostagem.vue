@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import { updatePost } from "@/Api";
+import { updatePost } from "@/api";
 
 export default {
   name: "EditarPostagem",
