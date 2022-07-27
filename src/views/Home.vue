@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import AppPerfil from "@/components/layout/AppPerfil.vue";
-import ListaPostagens from "@/components/posts/ListaPostagens.vue";
+import AppPerfil from "../components/layout/AppPerfil.vue";
+import ListaPostagens from "../components/posts/ListaPostagens.vue";
 import { Component, Vue } from "vue-property-decorator";
 @Component({
   components: {

@@ -190,7 +190,7 @@ export default {
       });
     },
     confirmDelete(id) {
-      let r = confirm("Tem certeza que deseja excluir esta publicação? " + id);
+      let r = confirm("Tem certeza que deseja excluir esta publicação? " );
       if (r == true) {
         this.deletePost(id);
       }
